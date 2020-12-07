@@ -1,9 +1,9 @@
 # nanopi NEO2  Actions-OpenWrt  基于天灵高大全固件
 ## 12.7号晚 测试后可用
 支持USB网卡
+默认引用 project-openwrt 的源码，对arm支持更好
 使用方法：fork后手动在action中启动编译
 cpu freq调频功能待更正，手头暂无设备，实际使用无太大影响。
-
 ## Acknowledgments
 
 - [Microsoft](https://www.microsoft.com)
