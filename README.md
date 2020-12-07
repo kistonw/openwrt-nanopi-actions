@@ -7,6 +7,7 @@
 使用方法：fork后手动在action中启动编译
 
 cpu freq调频功能待更正，手头暂无设备，实际使用无太大影响。
+编译出问题请发issue
 ## Acknowledgments
 
 - [Microsoft](https://www.microsoft.com)
