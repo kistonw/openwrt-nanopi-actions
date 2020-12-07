@@ -1,7 +1,6 @@
 # Actions-OpenWrt
 ## nanopi NEO2
-修复passwall的问题
-# 升级设备，停止维护， 上游链接变化导致编译失败，请自行修改
+# 即将修复
 
 ## Acknowledgments
 
