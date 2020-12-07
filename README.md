@@ -1,7 +1,7 @@
 # Actions-OpenWrt
 ## nanopi NEO2
 # 12.7号晚 测试后可用
-cpu主频较低
+cpu主频较低，待更正
 
 ## Acknowledgments
 
