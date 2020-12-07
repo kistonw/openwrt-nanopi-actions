@@ -1,6 +1,6 @@
 # Actions-OpenWrt
 ## nanopi NEO2
-# 即将修复
+# 12.7号晚上进行测试后上线
 
 ## Acknowledgments
 
