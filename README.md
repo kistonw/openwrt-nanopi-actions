@@ -3,7 +3,9 @@ based on CN_SZTL's setting of r2s 基于天灵高大全固件
 ## Alive？
 test OK in 7.12.2020  
 2020.12.7测试可用 
+
 ## features：
+
 add support of USB wireless 
 加入支持USB网卡 
 default use src from [project-openwrt](https://github.com/project-openwrt/openwrt)  
