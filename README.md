@@ -2,7 +2,9 @@
 
 based on CN_SZTL's setting of r2s 基于天灵高大全固件
 
-## test OK in 7.12.2020  2020.12.7测试可用 
+## Alive？
+test OK in 7.12.2020  
+2020.12.7测试可用 
 
 ## features：
 
