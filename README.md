@@ -1,16 +1,23 @@
-# nanopi NEO2  Actions-OpenWrt  基于天灵高大全固件
-## 12.7号晚测试可用
-支持USB网卡
+# nanopi NEO2  Actions-OpenWrt based on CN_SZTL's setting of r2s 基于天灵高大全固件 
+## test OK in 7.12.2020  2020.12.7测试可用 
 
-默认引用 project-openwrt 的源
+## features：
+
+add support of USB wireless 加入支持USB网卡 
+
+default use src from [project-openwrt](https://github.com/project-openwrt/openwrt)  默认使用 [project-openwrt](https://github.com/project-openwrt/openwrt) 的源
+
+## usage：
+fork and enable action by hand
 
 使用方法：fork后手动在action中启动编译
 
-H5的主频较低，频率可以提高
+## what's more
+todo：
 
-cpu freq调频功能待更正，实际使用“应该”无太大影响。
+default soc（H5） Freqs is low（1GHz）,it can be increased in dts， but I don't have a device to test.
 
-按道理可以超频，手头无设备，暂时无法测试
+H5的主频较低，频率可以提高,没设备测试，就先不改了。
 
 编译出问题请发issue
 ## Acknowledgments
