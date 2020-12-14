@@ -14,7 +14,7 @@ cpu freq调频功能待更正，实际使用“应该”无太大影响。
 
 编译出问题请发issue
 ## Acknowledgments
-
+- [CN_SZTL's r2s](https://github.com/1715173329/nanopi-r2s-openwrt)
 - [Microsoft](https://www.microsoft.com)
 - [Microsoft Azure](https://azure.microsoft.com)
 - [GitHub](https://github.com)
