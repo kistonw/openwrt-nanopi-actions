@@ -1,5 +1,5 @@
 # nanopi NEO2  Actions-OpenWrt
-based on CN_SZTL's setting of r2s 基于天灵高大全固件
+based on CN_SZTL's setting of r2s 基于天灵r2s高大全固件
 ## Alive？
 test OK in 7.12.2020  
 2020.12.7测试可用 
