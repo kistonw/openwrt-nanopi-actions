@@ -12,7 +12,7 @@ test OK in 7.12.2020
 
 add support of USB wireless 
 
-加入更多非主线支持USB网卡 
+加入更多非主线支持USB网卡 cf881ac 8821cu 
 
 default use src from [project-openwrt](https://github.com/project-openwrt/openwrt)  [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
 
