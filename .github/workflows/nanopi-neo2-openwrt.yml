@@ -43,6 +43,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: MachineType 
+      run: |
+        cat /proc/cpuinfo
+        cat /proc/meminfo
+        cat /etc/issue
+        cat /proc/version
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
