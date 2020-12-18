@@ -11,7 +11,8 @@
 name: Build R4s
 
 on:
-  repository_dispatch:
+  workflow_dispatch:
+#  repository_dispatch:
 #  schedule:
 #    - cron: 0 8 * * 5
 
