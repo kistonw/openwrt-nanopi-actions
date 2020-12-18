@@ -1,4 +1,4 @@
-# nanopi NEO2  Actions-OpenWrt
+# nanopi  Actions-OpenWrt
 full app 
 
 nanopi neo2 
