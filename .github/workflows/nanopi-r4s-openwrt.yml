@@ -25,9 +25,15 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
+<<<<<<< HEAD
   CONFIG_FILE: ./Device/r2s/.config
   DIY_P1_SH: ./Device/r2s/diy-part1.sh
   DIY_P2_SH: ./Device/r2s/diy-part2.sh
+=======
+  CONFIG_FILE: .config
+  DIY_P1_SH: diy-part1.sh
+  DIY_P2_SH: diy-part2.sh
+>>>>>>> 434e98ceb4685a2e15d66408953464fb7dc88519
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -50,7 +56,10 @@ jobs:
         cat /proc/meminfo
         cat /etc/issue
         cat /proc/version
+<<<<<<< HEAD
 
+=======
+>>>>>>> 434e98ceb4685a2e15d66408953464fb7dc88519
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -119,7 +128,11 @@ jobs:
         echo "::set-output name=status::success"
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+<<<<<<< HEAD
         echo "FILE_DATE=_$($(cat DEVICE_NAME)+date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+=======
+        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+>>>>>>> 434e98ceb4685a2e15d66408953464fb7dc88519
     - name: Check space usage
       if: (!cancelled())
       run: df -hT
@@ -166,7 +179,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$($(cat DEVICE_NAME)+date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
