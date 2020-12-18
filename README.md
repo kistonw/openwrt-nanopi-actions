@@ -1,7 +1,9 @@
 # nanopi NEO2  Actions-OpenWrt
-based on CN_SZTL's setting of r2s 
+full app 
 
-基于天灵r2s高大全固件
+nanopi neo2 
+nanopi r2s
+nanopi r4s
 ## Alive？
 test OK in 7.12.2020  
 2020.12.7测试可用 
@@ -10,11 +12,11 @@ test OK in 7.12.2020
 
 add support of USB wireless 
 
-加入支持USB网卡 
+加入更多非主线支持USB网卡 
 
-default use src from [project-openwrt](https://github.com/project-openwrt/openwrt)  
+default use src from [project-openwrt](https://github.com/project-openwrt/openwrt)  [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
 
-默认使用 [project-openwrt](https://github.com/project-openwrt/openwrt) 的源
+默认使用 [project-openwrt](https://github.com/project-openwrt/openwrt) [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)的源
 ## usage：
 fork and enable action in your repo
 
@@ -23,7 +25,6 @@ fork and enable action in your repo
 ### todo：
 default soc（H5） Freqs is low（1GHz）,it can be increased in dts， but I don't have a device to test.
 
-H5的主频较低，频率可以提高,没设备测试，就先不改了。
 ### if have problem pls use issue
 编译出问题请发issue
 ## Acknowledgments
