@@ -9,11 +9,11 @@ env:
   REPO_URL: https://github.com/1715173329/openwrt
   REPO_BRANCH: 1806-k54-nanopi-r4s
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./Device/$DeviceName/.config
-  DIY_P1_SH: ./Device/$DeviceName/diy-part1.sh
-  DIY_P2_SH: ./Device/$DeviceName/diy-part2.sh
-  PATCH_1: ./Device/$DeviceName/1806-modify_for_r4s.patch
-  PATCH_2: ./Device/$DeviceName/2.patch
+  CONFIG_FILE: ./Device/$DEVICENAME/.config
+  DIY_P1_SH: ./Device/$DEVICENAME/diy-part1.sh
+  DIY_P2_SH: ./Device/$DEVICENAME/diy-part2.sh
+  PATCH_1: ./Device/$DEVICENAME/1806-modify_for_r4s.patch
+  PATCH_2: ./Device/$DEVICENAME/2.patch
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -82,7 +82,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        
+
     - name: Add patch
       working-directory: /workdir
       run: |
