@@ -35,14 +35,20 @@ jobs:
         cat /etc/issue
         cat /proc/version
 
-    - name: Test 
+    - name: CustomFileAvaliable
       run: |
+        echo "Test"
+        echo "FEEDS_CONF"
         [ -e $FEEDS_CONF ] &&cat $FEEDS_CONF
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         cat $CONFIG_FILE
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         cat $DIY_P1_SH
-        cat $DIY_P1_SH
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        cat $DIY_P2_SH
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         [ -e $PATCH_1 ] && cat $PATCH_1
-        [ -e $PATCH_2 ] && cat $PATCH_2
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     - name: Init Building Dependencies
       env:
@@ -88,7 +94,6 @@ jobs:
       working-directory: /workdir
       run: |
         [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
-        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"  
 
     - name: Load custom configuration
       run: |
