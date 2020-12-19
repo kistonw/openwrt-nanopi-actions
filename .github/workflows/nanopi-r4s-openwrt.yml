@@ -35,11 +35,21 @@ jobs:
         cat /etc/issue
         cat /proc/version
 
+    - name: Test 
+      run: |
+        [ -e $FEEDS_CONF ] &&cat $FEEDS_CONF
+        cat $CONFIG_FILE
+        cat $DIY_P1_SH
+        cat $DIY_P1_SH
+        [ -e $PATCH_1 ] cat $PATCH_1
+        [ -e $PATCH_2 ] cat $PATCH_2
+
+
+
     - name: Init Building Dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        cat $DIY_P1_SH
         docker rmi $(docker images -q)
         sudo -E apt-get remove -y --purge azure-cli ghc zulu* hhvm llvm* firefox google* dotnet* powershell mysql* php* mssql-tools msodbcsql17 android*
         sudo -E apt-get update -y
