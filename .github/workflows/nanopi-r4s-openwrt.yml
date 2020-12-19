@@ -9,11 +9,11 @@ env:
   REPO_URL: https://github.com/1715173329/openwrt
   REPO_BRANCH: 1806-k54-nanopi-r4s
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./Device/$DEVICENAME/.config
-  DIY_P1_SH: ./Device/$DEVICENAME/diy-part1.sh
-  DIY_P2_SH: ./Device/$DEVICENAME/diy-part2.sh
-  PATCH_1: ./Device/$DEVICENAME/1806-modify_for_r4s.patch
-  PATCH_2: ./Device/$DEVICENAME/2.patch
+  CONFIG_FILE: ./Device/r4s/.config
+  DIY_P1_SH: ./Device/r4s/diy-part1.sh
+  DIY_P2_SH: ./Device/r4s/diy-part2.sh
+  PATCH_1: ./Device/r4s/1806-modify_for_r4s.patch
+  PATCH_2: ./Device/r4s/2.patch
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -35,6 +35,20 @@ jobs:
         cat /etc/issue
         cat /proc/version
 
+    - name: Clone Source
+      working-directory: /workdir
+      run: |
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+
+    - name: Load custom feeds
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x $DIY_P1_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_P1_SH
     - name: Init Building Dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -53,28 +67,13 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-
-    - name: Clone Source
-      working-directory: /workdir
-      run: |
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-
-
-    - name: Load custom feeds
-      run: |
-        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-
+        
     - name: Update/Install feeds
       run: |
        cd openwrt
        ./scripts/feeds update -a
        ./scripts/feeds install -a 
-       
+
     - name: Add patch
       working-directory: /workdir
       run: |
