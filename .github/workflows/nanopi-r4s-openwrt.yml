@@ -73,14 +73,8 @@ jobs:
       run: |
        cd openwrt
        ./scripts/feeds update -a
-       ./scripts/feeds install -a
+       ./scripts/feeds install -a 
 
-    - name: Add patch
-      working-directory: /workdir
-      run: |
-        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
-        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"   
-        
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -88,6 +82,13 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        
+    - name: Add patch
+      working-directory: /workdir
+      run: |
+        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
+        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"  
+
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
