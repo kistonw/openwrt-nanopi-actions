@@ -12,6 +12,8 @@ env:
   CONFIG_FILE: ./Device/$DeviceName/.config
   DIY_P1_SH: ./Device/$DeviceName/diy-part1.sh
   DIY_P2_SH: ./Device/$DeviceName/diy-part2.sh
+  PATCH_1: ./Device/$DeviceName/1806-modify_for_r4s.patch
+  PATCH_2: ./Device/$DeviceName/2.patch
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -58,12 +60,12 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        [ -e files ] && patch -p1 < "${GITHUB_WORKSPACE}/Device/$DEVICENAME/1806-modify_for_r4s.patch"
 
     - name: Add patch
       working-directory: /workdir
       run: |
-        patch -p1 < "${GITHUB_WORKSPACE}/Device/$DEVICENAME/1806-modify_for_r4s.patch"   
+        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
+        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"   
 
     - name: Load custom feeds
       run: |
@@ -72,7 +74,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
-    - name: Update feeds
+    - name: Update/Install feeds
       run: |
        cd openwrt
        ./scripts/feeds update -a
