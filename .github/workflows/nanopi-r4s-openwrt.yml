@@ -1,4 +1,4 @@
-name: NanoPi R4S OpenWrt
+name: Build r4s
 
 on: 
   repository_dispatch:
@@ -60,7 +60,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         [ -e files ] && patch -p1 < "${GITHUB_WORKSPACE}/Device/$DEVICENAME/1806-modify_for_r4s.patch"
 
-     - name: Add patch
+    - name: Add patch
       working-directory: /workdir
       run: |
         patch -p1 < "${GITHUB_WORKSPACE}/Device/$DEVICENAME/1806-modify_for_r4s.patch"   
@@ -74,7 +74,7 @@ jobs:
 
     - name: Update feeds
       run: |
-      cd openwrt
+       cd openwrt
        ./scripts/feeds update -a
        ./scripts/feeds install -a
 
@@ -86,7 +86,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-      - name: SSH connection to Actions
+    - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
       env:
@@ -187,7 +187,7 @@ jobs:
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
   Cleanup-Old-Artifacts:
-    needs: [NanoPi R4S OpenWrt]
+    needs: [Build]
     runs-on: ubuntu-18.04
     steps:
     - name: Cleanup Old Action Artifacts
@@ -196,7 +196,7 @@ jobs:
         token: ${{ github.token }}
         expire-in: 7d
   Cleanup-Workflow-Runs:
-    needs: [NanoPi R4S OpenWrt]
+    needs: [Build]
     runs-on: ubuntu-18.04
     steps:
       - name: Cleanup Workflow Runs
