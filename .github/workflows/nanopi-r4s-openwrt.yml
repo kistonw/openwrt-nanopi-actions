@@ -61,11 +61,6 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Add patch
-      working-directory: /workdir
-      run: |
-        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
-        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"   
 
     - name: Load custom feeds
       run: |
@@ -80,6 +75,12 @@ jobs:
        ./scripts/feeds update -a
        ./scripts/feeds install -a
 
+    - name: Add patch
+      working-directory: /workdir
+      run: |
+        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
+        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"   
+        
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
