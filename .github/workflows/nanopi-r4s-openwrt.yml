@@ -41,10 +41,8 @@ jobs:
         cat $CONFIG_FILE
         cat $DIY_P1_SH
         cat $DIY_P1_SH
-        [ -e $PATCH_1 ] cat $PATCH_1
-        [ -e $PATCH_2 ] cat $PATCH_2
-
-
+        [ -e $PATCH_1 ] && cat $PATCH_1
+        [ -e $PATCH_2 ] && cat $PATCH_2
 
     - name: Init Building Dependencies
       env:
