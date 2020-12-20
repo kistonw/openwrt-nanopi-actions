@@ -13,7 +13,7 @@ env:
   DIY_P1_SH: ./Device/r4s/diy-part1.sh
   DIY_P2_SH: ./Device/r4s/diy-part2.sh
   PATCH_1: ./Device/r4s/1806-modify_for_r4s.patch
-  PATCH_2: ./Device/r4s/2.patch
+  #PATCH_2: ./Device/r4s/2.patch
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -35,7 +35,7 @@ jobs:
         cat /etc/issue
         cat /proc/version
 
-    - name: CustomFileAvaliable
+    - name: CustomFileAvaliableTest
       run: |
         echo "Test"
         echo "FEEDS_CONF"
@@ -91,8 +91,8 @@ jobs:
        ./scripts/feeds install -a 
 
     - name: Add patch
-      working-directory: /workdir
       run: |
+        cd openwrt
         [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
 
     - name: Load custom configuration
@@ -153,7 +153,7 @@ jobs:
 
     - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled() && !failure()
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
