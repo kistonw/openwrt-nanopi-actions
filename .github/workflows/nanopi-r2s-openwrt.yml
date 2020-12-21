@@ -13,11 +13,12 @@ env:
   REPO_URL: https://github.com/project-openwrt/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./Device/$DeviceName/.config
-  DIY_P1_SH: ./Device/$DeviceName/diy-part1.sh
-  DIY_P2_SH: ./Device/$DeviceName/diy-part2.sh
-  PATCH_1: ./Device/$DeviceName/1806-modify_for_r4s.patch
-  PATCH_2: ./Device/$DeviceName/2.patch
+ FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: ./Device/r2s/.config
+  DIY_P1_SH: ./Device/r2s/diy-part1.sh
+  DIY_P2_SH: ./Device/r4s/diy-part2.sh
+  #PATCH_1: ./Device/r2s/1806-modify_for_r4s.patch
+  #PATCH_2: ./Device/r4s/2.patch
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: true
@@ -38,6 +39,21 @@ jobs:
         cat /proc/meminfo
         cat /etc/issue
         cat /proc/version
+
+    - name: CustomFileAvaliableTest
+      run: |
+        echo "Test"
+        echo "FEEDS_CONF"
+        [ -e $FEEDS_CONF ] &&cat $FEEDS_CONF
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        cat $CONFIG_FILE
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        cat $DIY_P1_SH
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        cat $DIY_P2_SH
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        [ -e $PATCH_1 ] && cat $PATCH_1
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     - name: Init Building Dependencies
       env:
@@ -79,6 +95,11 @@ jobs:
        ./scripts/feeds update -a
        ./scripts/feeds install -a 
 
+   # - name: Add patch
+   #   run: |
+   #     cd openwrt
+   #     [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
+
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -86,13 +107,6 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        
-    - name: Add patch
-      working-directory: /workdir
-      run: |
-        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
-        [ -e $PATCH_2 ] && patch -p1 < "$PATCH_2"  
-
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -144,7 +158,7 @@ jobs:
 
     - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled() && !failure()
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
