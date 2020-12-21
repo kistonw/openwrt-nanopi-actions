@@ -14,7 +14,6 @@ env:
   REPO_URL: https://github.com/project-openwrt/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
- FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ./Device/r2s/.config
   DIY_P1_SH: ./Device/r2s/diy-part1.sh
   DIY_P2_SH: ./Device/r4s/diy-part2.sh
