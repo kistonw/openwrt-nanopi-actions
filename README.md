@@ -21,19 +21,14 @@ default use src from [project-openwrt](https://github.com/project-openwrt/openwr
 fork and enable action in your repo
 
 使用方法：fork后手动在action中启动编译
-## what's more
-### todo：
-default soc（H5） Freqs is low（1GHz）,it can be increased in dts， but I don't have a device to test.
 
-### if have problem pls use issue
-编译出问题请发issue
 ## Acknowledgments
 [CN_SZTL's r2s](https://github.com/1715173329/nanopi-r2s-openwrt)
 [Microsoft](https://www.microsoft.com)  [Microsoft Azure](https://azure.microsoft.com) [GitHub](https://github.com)
 [GitHub Actions](https://github.com/features/actions) [tmate](https://github.com/tmate-io/tmate)
 [mxschmitt/action-tmate](https://github.com/mxschmitt/action-tmate) [csexton/debugger-action](https://github.com/csexton/debugger-action)
 [OpenWrt](https://github.com/openwrt/openwrt) [Lean's OpenWrt](https://github.com/coolsnowwolf/lede)
-[Cowtransfer](https://cowtransfer.com） [WeTransfer](https://wetransfer.com/)[Mikubill/transfer](https://github.com/Mikubill/transfer)
+[Cowtransfer](https://cowtransfer.com)  [WeTransfer](https://wetransfer.com/)
 
 ## License
 MIT
