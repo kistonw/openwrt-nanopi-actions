@@ -93,7 +93,7 @@ jobs:
     - name: Add patch
       run: |
         cd openwrt
-        [ -e $PATCH_1 ] && patch -p1 < "$PATCH_1" 
+        patch -p1 < "./Device/r4s/1806-modify_for_r4s.patch" 
 
     - name: Load custom configuration
       run: |
